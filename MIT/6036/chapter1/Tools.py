@@ -18,19 +18,21 @@ def determinantOfVector(A) :
     # For Vector A & B
     # (A Transpose) {Cross Product} B = A {Dot Product} B
     # Sum of Squares for a Vector A = A { Dot Product } A
-    sumOfSq = np.dot( np.array(A).T , np.array(A))
-    val1 = np.sqrt(sumOfSq)
-    B = A ** 2
-    val2 = np.sqrt(np.sum(B))
-    return [val1,val2]
+    sumOfSq = np.dot( np.transpose(np.array(A)) , np.array(A))
+    val1 = np.asscalar(np.sqrt(sumOfSq))
+    # B = A ** 2
+    # val2 = np.sqrt(np.sum(B))
+    # return [val1,val2]
+    return val1
 
 def __testDeterminantOfVector() :
     A = np.array([[1],[2] ,[3],[4],[5]])
     print(determinantOfVector(A))
 
 
+
 def distanceFromPlane(x,th,th0) :
-    dist = ( np.dot( np.array(th).T , np.array(x) ) + th0 ) / determinantOfVector(th)
+    dist = np.asscalar(( np.dot(  np.transpose(np.array(th)) , np.array(x) ) + th0 ) / determinantOfVector(th))
     return dist
 
 def __testDistanceFromPlane():
@@ -38,4 +40,19 @@ def __testDistanceFromPlane():
     x = np.array([[0],[0]])
     th0 = 5
     print(distanceFromPlane(x,th,th0))
+
+
+def getColumnVector(arr):
+    A = []
+    for val in arr :
+        tmp = []
+        tmp.append(val)
+        A.append(tmp)
+    return A
+
+def __testGetColumnVector() :
+    A = [1,2,3,4,5]
+    V= getColumnVector(A)
+    print(V)
+
 

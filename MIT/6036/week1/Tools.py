@@ -50,6 +50,7 @@ def getColumnVector(arr):
         A.append(tmp)
     return A
 
+
 def __testGetColumnVector() :
     A = [1,2,3,4,5]
     V= getColumnVector(A)

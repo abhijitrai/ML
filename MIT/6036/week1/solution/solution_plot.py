@@ -31,7 +31,7 @@ def plot_data(data, labels, ax=None, clear=False,
         ax.clear()
     else:
         xlim, ylim = ax.get_xlim(), ax.get_ylim()
-    colors = np.choose(labels > 0, cv(['r', 'g']))[0]
+    colors = np.choose(labels > 0, cv(['r', 'g']))
     ax.scatter(data[0, :], data[1, :], c=colors,
                marker='o', s=50, edgecolors='none')
     # Seems to occasionally mess up the limits

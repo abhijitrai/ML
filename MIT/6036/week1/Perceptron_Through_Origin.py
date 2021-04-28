@@ -95,28 +95,32 @@ def get_plotable_structure(sample_data):
     return np.array([xVals, yVals])
 
 
-def test1():
+def test1(arg=1):
+    data1, labels1, data2, labels2
     th = np.zeros((2, 1))  # Generic form of th1 = np.array(cv([0 , 0]))
     #  * Question #1
-    sampleData = [[[1, -1], 1], [[0, 1], -1], [[-1.5, -1], 1]]
-    # plot_able_data = get_plotable_structure(sampleData)
-    # labels = (np.array(sampleData))[:, 1]
-    algo(sampleData, th)
-    sampleData = [[[0, 1], -1], [[-1.5, -1], 1], [[1, -1], 1]]
-    algo(sampleData, th)
+    if(arg == 1 ) :
+        sampleData = [[[1, -1], 1], [[0, 1], -1], [[-1.5, -1], 1]]
+        algo(sampleData, th)
+    if(arg == 2 ) :
+        sampleData = [[[0, 1], -1], [[-1.5, -1], 1], [[1, -1], 1]]
+        algo(sampleData, th)
     # *Question #2 *
-    sampleData = [[[1, -1], 1], [[0, 1], -1], [[-10, -1], 1]]
-    algo(sampleData, th)
-    sampleData = [[[0, 1], -1], [[-10, -1], 1], [[1, -1], 1]]
-    algo(sampleData, th)
-    sampleData = formatInputData(data1, labels1)
-    algo(sampleData, th,plotIntermediate=False)
-    sampleData = formatInputData(data2, labels2)
-    algo(sampleData, th, plotIntermediate=False)
-
+    if(arg == 3 ) :
+        sampleData = [[[1, -1], 1], [[0, 1], -1], [[-10, -1], 1]]
+        algo(sampleData, th)
+    if(arg == 4 ) :
+        sampleData = [[[0, 1], -1], [[-10, -1], 1], [[1, -1], 1]]
+        algo(sampleData, th)
+    if(arg == 5 ) :
+        sampleData = formatInputData(data1, labels1)
+        algo(sampleData, th,plotIntermediate=False)
+    if(arg == 6 ) :
+        sampleData = formatInputData(data2, labels2)
+        algo(sampleData, th, plotIntermediate=False)
     print("Done")
 
 
-data1, labels1, data2, labels2
 
-test1()
+
+test1(arg=3)

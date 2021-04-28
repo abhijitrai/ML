@@ -35,8 +35,8 @@ def __testDeterminantOfVector():
 
 def distanceFromPlane(x, th, th0):
     dist = np.asscalar((np.dot(np.transpose(np.array(th)), np.array(x)) + th0) / determinantOfVector(th))
-    print('Distance For : X :{0} , Th : {1} , Th0 : {2}  Distance:{3}'.format(x.flatten(),
-                                                                              th.flatten(), th0, dist))
+    # print('Distance For : X :{0} , Th : {1} , Th0 : {2}  Distance:{3}'.format(x.flatten(),
+    #                                                                           th.flatten(), th0, dist))
     return dist
 
 

@@ -77,6 +77,9 @@ def test1(test=1, verbose = False):
     th0 = 0
     algo(sampleData, th, th0,verbose=verbose)
 
+def mistake_upper_bond(gamma,R):
+    return (R/gamma)**2
+
 def test2(test=1 , verbose = False):
     if(test == 1 )  :
         sampleData = [[[0,0,0],-1],[[0,0,1],-1],[[0,1,0],-1],[[0,1,1],-1],[[1,0,0],-1],[[1,0,1],-1],[[1,1,0],-1],[[1,1,1],1]]
@@ -84,6 +87,12 @@ def test2(test=1 , verbose = False):
     th0 = 0
     algo(sampleData, th, th0,verbose=verbose)
 
+def test_mistake_upper_bond() :
+    ar = np.array([.00001, .0001, .001, .01, .1, .2, .5])
+    bond =  (1/ar)**2
+    print(bond.flatten())
 
-test1(6,verbose=False)
+
+# test1(6,verbose=False)
 # test2(1,verbose=True)
+test_mistake_upper_bond()

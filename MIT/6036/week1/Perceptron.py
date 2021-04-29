@@ -29,13 +29,13 @@ def testRun(sampleData, th, th0):
         predictedVal = data[1]
         distance = dist(testPoint, th, th0)
         act = np.sign(distance)
-        print('Result', act == predictedVal, '\tPoint -> ', data[0], '\tDist', distance, '\t Predicted -> ',
+        print('Result', act == predictedVal, '\tPoint -> ', data[0], '\tDist', distance, '\t Label -> ',
               predictedVal,
-              ' Actual -> ', act)
+              ' Prediction -> ', act)
     print('***************************Test Run End , Th ={0} , Th0 = {1} *************************************'.format(th.flatten(),th0))
 
 
-def algo(sampleData, th, th0, T=10, verbose = False ):
+def algo(sampleData, th, th0, T=20, verbose = False ):
     count = 0
     for i in range(T):
         for data in sampleData:
@@ -71,11 +71,19 @@ def test1(test=1, verbose = False):
         sampleData = [[[0, 1], -1], [[-10, -1], 1], [[1, -1], 1]]
     if test == 5:
         sampleData = [[[-3, 2], 1], [[-1, 1], -1], [[-1, -1], -1], [[2,2],-1] , [[1,-1],-1]  ]
-
+    if test == 6:
+        sampleData = [[[-1, 1], 1], [[1, -1], 1], [[1, 1], -1], [[2, 2], -1]]
     th = np.zeros((2, 1))  # Generic form of th1 = np.array(cv([0 , 0]))
     th0 = 0
+    algo(sampleData, th, th0,verbose=verbose)
 
+def test2(test=1 , verbose = False):
+    if(test == 1 )  :
+        sampleData = [[[0,0,0],-1],[[0,0,1],-1],[[0,1,0],-1],[[0,1,1],-1],[[1,0,0],-1],[[1,0,1],-1],[[1,1,0],-1],[[1,1,1],1]]
+    th = np.zeros((3, 1))  # Generic form of th1 = np.array(cv([0 , 0]))
+    th0 = 0
     algo(sampleData, th, th0,verbose=verbose)
 
 
-test1(5,verbose=False)
+test1(6,verbose=False)
+# test2(1,verbose=True)

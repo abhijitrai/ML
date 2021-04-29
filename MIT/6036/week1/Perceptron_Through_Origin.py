@@ -4,6 +4,7 @@ from Tools import distanceFromPlane as dist
 from solution.solution_data import labels1, data1, data2, labels2
 from solution.solution_plot import plot_data, plot_separator
 
+
 #
 # def calcEqVal(X, Th, Th0):
 #     thTranspose = np.transpose(np.array(Th))
@@ -89,7 +90,6 @@ def algo(sample_data, th, T=20, plotIntermediate=True):
     testRun(sample_data, th)
 
 
-
 def formatInputData(data, labels):
     xVals = data[0]
     yVals = data[1]
@@ -114,28 +114,33 @@ def test1(arg=1):
     data1, labels1, data2, labels2
     th = np.zeros((2, 1))  # Generic form of th1 = np.array(cv([0 , 0]))
     #  * Question #1
-    if(arg == 1 ) :
+    if (arg == 1):
         sampleData = [[[1, -1], 1], [[0, 1], -1], [[-1.5, -1], 1]]
-        algo(sampleData, th)
-    if(arg == 2 ) :
+    if (arg == 2):
         sampleData = [[[0, 1], -1], [[-1.5, -1], 1], [[1, -1], 1]]
-        algo(sampleData, th)
     # *Question #2 *
-    if(arg == 3 ) :
+    if (arg == 3):
         sampleData = [[[1, -1], 1], [[0, 1], -1], [[-10, -1], 1]]
-        algo(sampleData, th)
-    if(arg == 4 ) :
+    if (arg == 4):
         sampleData = [[[0, 1], -1], [[-10, -1], 1], [[1, -1], 1]]
-        algo(sampleData, th)
-    if(arg == 5 ) :
+    if (arg == 5):
         sampleData = formatInputData(data1, labels1)
-        algo(sampleData, th,plotIntermediate=False)
-    if(arg == 6 ) :
+    if (arg == 6):
         sampleData = formatInputData(data2, labels2)
-        algo(sampleData, th, plotIntermediate=False)
+    if arg == 7:
+        sampleData = [[[-1, 1], 1], [[1, -1], 1], [[1, 1], -1], [[2, 2], -1]]
+
+    algo(sampleData, th, plotIntermediate=False)
     print("Done")
 
 
+def test2(test=1, verbose=False):
+    if (test == 1):
+        sampleData = [[[0, 0, 0], -1], [[0, 0, 1], -1], [[0, 1, 0], -1], [[0, 1, 1], -1], [[1, 0, 0], -1],
+                      [[1, 0, 1], -1], [[1, 1, 0], -1], [[1, 1, 1], 1]]
+    th = np.zeros((3, 1))  # Generic form of th1 = np.array(cv([0 , 0]))
+    algo(sampleData, th, plotIntermediate=verbose)
 
 
-test1(arg=3)
+test1(arg=6)
+# test2(test=1,verbose=False)

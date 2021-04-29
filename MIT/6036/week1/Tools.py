@@ -21,7 +21,7 @@ def determinantOfVector(A):
     # (A Transpose) {Cross Product} B = A {Dot Product} B
     # Sum of Squares for a Vector A = A { Dot Product } A
     sumOfSq = np.dot(np.transpose(np.array(A)), np.array(A))
-    val1 = np.asscalar(np.sqrt(sumOfSq))
+    val1 = np.sqrt(sumOfSq).item()
     # B = A ** 2
     # val2 = np.sqrt(np.sum(B))
     # return [val1,val2]
@@ -34,10 +34,13 @@ def __testDeterminantOfVector():
 
 
 def distanceFromPlane(x, th, th0):
-    dist = np.asscalar((np.dot(np.transpose(np.array(th)), np.array(x)) + th0) / determinantOfVector(th))
+    if determinantOfVector(th)==0 :
+        # print('Error the determinant is 0 , th ={0}'.format(th.flatten()))
+        return 0
+    dist = (np.dot(np.transpose(np.array(th)), np.array(x)) + th0) / determinantOfVector(th)
     # print('Distance For : X :{0} , Th : {1} , Th0 : {2}  Distance:{3}'.format(x.flatten(),
     #                                                                           th.flatten(), th0, dist))
-    return dist
+    return dist.item()
 
 
 def __testDistanceFromPlane():

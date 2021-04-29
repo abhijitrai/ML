@@ -4,13 +4,12 @@ from Tools import distanceFromPlane as dist
 from solution.solution_data import super_simple_separable_through_origin
 
 
-def calcEqVal(X, Th, Th0):
-    thTranspose = np.transpose(np.array(Th))
+def perceptron_check_th(X, Th, Th0, pred):
+    thTranspose = np.transpose(Th)
     vector = np.array(X)
     dotProduct = np.dot(thTranspose, vector)
-    # dotProduct = np.sum(np.array(Th)  *  vector)
     res = dotProduct + Th0
-    return np.asscalar(res)
+    return pred * res.item()
 
 
 def updateTheta0(th0, predictedVal):
@@ -18,54 +17,65 @@ def updateTheta0(th0, predictedVal):
 
 
 def updateTheta(th, testPoint, predictedVal):
-    tmpVector = predictedVal * testPoint
+    tmpVector = predictedVal * testPoint  # Predicted val is a scalar , test point is a vector
     result = th + tmpVector
     return result
 
 
 def testRun(sampleData, th, th0):
-    print('****************************Test Run Start************************************')
-
+    print('****************************Test Run Start , Th ={0} , Th0 = {1} ************************************'.format(th.flatten(),th0))
     for data in sampleData:
         testPoint = np.array(cv(data[0]))
         predictedVal = data[1]
         distance = dist(testPoint, th, th0)
         act = np.sign(distance)
-        print('Result', act == predictedVal, '\tPoint -> ', data[0], '\tDist', distance, '\t Predicted -> ', predictedVal,
+        print('Result', act == predictedVal, '\tPoint -> ', data[0], '\tDist', distance, '\t Predicted -> ',
+              predictedVal,
               ' Actual -> ', act)
-    print('***************************Test Run End *************************************')
+    print('***************************Test Run End , Th ={0} , Th0 = {1} *************************************'.format(th.flatten(),th0))
 
 
-def algo(sampleData, th, th0, T=3, ):
+def algo(sampleData, th, th0, T=10, verbose = False ):
     count = 0
     for i in range(T):
         for data in sampleData:
             testPoint = np.array(cv(data[0]))
             predictedVal = data[1]
-            if ( (predictedVal * calcEqVal(testPoint, th, th0) )<= 0):
-                print('Sample Run with Th -> ', th, '\t Th0 -> ', th0)
-                testRun(sampleData, th, th0)
+            if perceptron_check_th(testPoint, th, th0, predictedVal) <= 0:
+                if th.all() == 0 and  th0 == 0  :
+                    #  do nothing
+                    print()
+                else :
+                    if verbose :
+                        testRun(sampleData, th, th0)
                 th = updateTheta(th, testPoint, predictedVal)
                 th0 = updateTheta0(th0, predictedVal)
                 count = count + 1
-                print('Update -> ', count,  '\tTh -> ', th, '\t Th0 -> ', th0)
+                print('Mistake -> ', count, '\tTh -> ', th.flatten(), '\t Th0 -> ', th0)
 
     print('-----------------Final Result----------------------')
-    print('Final ----> Th -> ', th, '\t Th0 -> ', th0)
+    print('Final ----> Th -> ', th.flatten(), '\t Th0 -> ', th0)
     testRun(sampleData, th, th0)
 
-X,Y = super_simple_separable_through_origin()
-print(X)
-print(Y)
 
-
-def test1():
+def test1(test=1, verbose = False):
     #  * Question #1
-    sampleData = [[[1, -1], 1], [[0, 1], -1], [[-1.5, -1], 1]]
-    sampleData = [[[0, 1] ,-1], [[-1.5, -1], 1], [[1, -1], 1]]
+    if test == 1:
+        sampleData = [[[1, -1], 1], [[0, 1], -1], [[-1.5, -1], 1]]
+    if test == 2:
+        sampleData = [[[0, 1], -1], [[-1.5, -1], 1], [[1, -1], 1]]
     # *Question #2 *
-    sampleData = [[[1, -1], 1], [[0, 1], -1], [[-10, -1], 1]]
-    sampleData = [ [[0, 1], -1], [[-10, -1], 1],[[1, -1], 1]]
+    if test == 3:
+        sampleData = [[[1, -1], 1], [[0, 1], -1], [[-10, -1], 1]]
+    if test == 4:
+        sampleData = [[[0, 1], -1], [[-10, -1], 1], [[1, -1], 1]]
+    if test == 5:
+        sampleData = [[[-3, 2], 1], [[-1, 1], -1], [[-1, -1], -1], [[2,2],-1] , [[1,-1],-1]  ]
+
     th = np.zeros((2, 1))  # Generic form of th1 = np.array(cv([0 , 0]))
     th0 = 0
-    algo(sampleData, th, th0)
+
+    algo(sampleData, th, th0,verbose=verbose)
+
+
+test1(5,verbose=False)

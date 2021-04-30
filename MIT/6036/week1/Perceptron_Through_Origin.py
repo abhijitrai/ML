@@ -5,15 +5,6 @@ from solution.solution_data import labels1, data1, data2, labels2
 from solution.solution_plot import plot_data, plot_separator
 
 
-#
-# def calcEqVal(X, Th, Th0):
-#     thTranspose = np.transpose(np.array(Th))
-#     vector = np.array(X)
-#     dotProduct = np.dot(thTranspose, vector)
-#     res = dotProduct + Th0
-#     return np.asscalar(res)
-
-
 def updateTheta(th, testPoint, predictedVal):
     tmpVector = predictedVal * testPoint
     result = th + tmpVector
@@ -142,5 +133,5 @@ def test2(test=1, verbose=False):
     algo(sampleData, th, plotIntermediate=verbose)
 
 
-test1(arg=6)
+test1(arg=7)
 # test2(test=1,verbose=False)

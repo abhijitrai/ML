@@ -1,0 +1,67 @@
+package builder;
+
+public class MyBigClass {
+    private MyBigClass() {
+    }
+
+    private String s1, s2, s3, s4, s5, s6, s7, s8, s9;
+    private int i1, i2, i3, i4, i5, i6, i7;
+    private float f1, f2, f3, f4, f5, f6;
+    private Double d1, d2, d3, d4;
+
+    @Override
+    public String toString() {
+        return "MyBigClass{" +
+                "s1='" + s1 + '\'' +
+                ", s2='" + s2 + '\'' +
+                ", s3='" + s3 + '\'' +
+                ", s4='" + s4 + '\'' +
+                ", s5='" + s5 + '\'' +
+                ", s6='" + s6 + '\'' +
+                ", s7='" + s7 + '\'' +
+                ", s8='" + s8 + '\'' +
+                ", s9='" + s9 + '\'' +
+                ", i1=" + i1 +
+                ", i2=" + i2 +
+                ", i3=" + i3 +
+                ", i4=" + i4 +
+                ", i5=" + i5 +
+                ", i6=" + i6 +
+                ", i7=" + i7 +
+                ", f1=" + f1 +
+                ", f2=" + f2 +
+                ", f3=" + f3 +
+                ", f4=" + f4 +
+                ", f5=" + f5 +
+                ", f6=" + f6 +
+                ", d1=" + d1 +
+                ", d2=" + d2 +
+                ", d3=" + d3 +
+                ", d4=" + d4 +
+                '}';
+    }
+
+    public static class MyBigClassBuilder {
+
+        private MyBigClass myBigClass = new MyBigClass();
+
+        public MyBigClassBuilder withS1(String s1) {
+            myBigClass.s1 = s1;
+            return this;
+        }
+
+        public MyBigClass build() {
+            return myBigClass;
+        }
+
+
+    }
+}
+
+class TestClass {
+    public static void main(String[] args) {
+        MyBigClass.MyBigClassBuilder builder = new MyBigClass.MyBigClassBuilder();
+        builder.withS1("String A1");
+        System.out.println(builder.build());
+    }
+}

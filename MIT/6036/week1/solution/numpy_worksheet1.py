@@ -78,7 +78,10 @@ def multi_dim_array():
 
 
 def reshaping():
-    array = np.arange(10).reshape(2, 5)
+    array = np.arange(10)
+    print("Range 10")
+    print(array)
+    array = array.reshape(2, 5)
     print("Input Array [2,5]")
     print(array)
     print("Resize Array to [5,2]")
@@ -92,7 +95,7 @@ def reshaping():
     print(array)
 
 
-# reshaping()
+reshaping()
 # multi_dim_array()
 # arithmetic_operations()
 # arrayDetails()

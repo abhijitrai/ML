@@ -21,16 +21,7 @@ public class DemoNeuronsWithoutComposite {
         NeuronLayer layer3 = new NeuronLayer(of(n21, n22));
         layer1.connectTo(layer2);
         layer2.connectTo(layer3);
-//        n01.connectTo(of(n11, n12, n13));
-//        n02.connectTo(of(n11, n12, n13));
-//        n03.connectTo(of(n11, n12, n13));
-//        n11.connectTo(of(n21, n22));
-//        n12.connectTo(of(n21, n22));
-//        n13.connectTo(of(n21, n22));
-
         System.out.println("Wait");
-
-
     }
 
 
@@ -50,11 +41,6 @@ public class DemoNeuronsWithoutComposite {
             this.out.add(to);
             to.in.add(this);
         }
-
-        void connectTo(List<Neuron> neuronList) {
-            neuronList.stream().forEach(this::connectTo);
-        }
-
     }
 
     static class NeuronLayer {
@@ -63,10 +49,6 @@ public class DemoNeuronsWithoutComposite {
         }
 
         List<Neuron> neuronList;
-
-        void connectTo(Neuron neuron) {
-            neuronList.stream().forEach(x -> x.connectTo(neuron));
-        }
 
         void connectTo(NeuronLayer layer) {
             List<Neuron> neuron = layer.neuronList;

@@ -1,50 +1,59 @@
 package decorator;
 
-interface Drink{ String getDrink();}
+interface Drink {
+    String getDrink();
+}
 
-public class Tea implements  Drink {
-    String baseDrink = "Tea" ;
-    public String getDrink(){
+public class Tea implements Drink {
+    String baseDrink = "Tea";
+
+    public String getDrink() {
         return baseDrink;
     }
 }
 
-class Coffee implements  Drink {
-    String baseDrink = "Coffee" ;
-    public String getDrink(){
+class Coffee implements Drink {
+    String baseDrink = "Coffee";
+
+    public String getDrink() {
         return baseDrink;
     }
 }
 
-class AddCream implements Drink{
-    Drink drink ;
-    AddCream(Drink drink)
-    {
+abstract class Decorator implements Drink {
+    Drink drink;
+}
+
+class AddCream extends Decorator {
+
+    AddCream(Drink drink) {
         this.drink = drink;
     }
+
     @Override
     public String getDrink() {
         return "Cream & " + this.drink.getDrink();
     }
 }
-class AddMilk implements Drink{
-    Drink drink ;
-    AddMilk(Drink drink)
-    {
+
+class AddMilk extends Decorator {
+
+    AddMilk(Drink drink) {
         this.drink = drink;
     }
+
     @Override
     public String getDrink() {
         return "Milk &  " + this.drink.getDrink();
     }
 }
 
-class AddSugar implements Drink{
-    Drink drink ;
-    AddSugar(Drink drink)
-    {
+class AddSugar extends Decorator {
+
+    AddSugar(Drink drink) {
         this.drink = drink;
     }
+
     @Override
     public String getDrink() {
         return "Sugar &  " + this.drink.getDrink();

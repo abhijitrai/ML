@@ -1,10 +1,19 @@
 package decorator;
 
+
+public class DemoDrink {
+    public static void main(String[] args) {
+        // Tea with milk please
+        System.out.println(new AddMilk(new Tea()).getDrink());
+        System.out.println(new AddCream(new AddSugar(new AddMilk(new Coffee()))).getDrink());
+    }
+}
+
 interface Drink {
     String getDrink();
 }
 
-public class Tea implements Drink {
+class Tea implements Drink {
     String baseDrink = "Tea";
 
     public String getDrink() {
@@ -57,13 +66,5 @@ class AddSugar extends Decorator {
     @Override
     public String getDrink() {
         return "Sugar &  " + this.drink.getDrink();
-    }
-}
-
-class TestClass {
-    public static void main(String[] args) {
-        // Tea with milk please
-        System.out.println(new AddMilk(new Tea()).getDrink());
-        System.out.println(new AddCream(new AddSugar(new AddMilk(new Coffee()))).getDrink());
     }
 }

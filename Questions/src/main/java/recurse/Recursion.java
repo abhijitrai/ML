@@ -1,4 +1,4 @@
-package com.example.demo.recursion;
+package recurse;
 
 import java.util.Arrays;
 

@@ -1,4 +1,4 @@
-package ds;
+package tree;
 
 class Tree<T extends Comparable<T>> {
 

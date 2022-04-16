@@ -1,5 +1,4 @@
-// { Driver Code Starts
-//Initial Template for Java
+package DP;
 
 import java.io.*;
 import java.util.*;
@@ -10,36 +9,53 @@ public class PaintersPartitionProblem
 {
     public static void main(String args[])throws IOException
     {
-        BufferedReader read = new BufferedReader(new InputStreamReader(System.in));
-        int t = Integer.parseInt(read.readLine());
-        while(t-- > 0)
-        {
-            String input_line1[] = read.readLine().trim().split("\\s+");
-            int k = Integer.parseInt(input_line1[0]);
-            int n = Integer.parseInt(input_line1[1]);
-            String input_line[] = read.readLine().trim().split("\\s+");
-            int arr[]= new int[n];
-            for(int i = 0; i < n; i++)
-                arr[i] = Integer.parseInt(input_line[i]);
-            
-            Solution ob = new Solution();
-            System.out.println(ob.minTime(arr,n,k));
-        }
+       /*
+        Input
+        n = 5
+        k = 3
+        arr[] = {5,10,30,20,15}
+       *
+       * */
     }
 }
 
-// } Driver Code Ends
+
+/*
+* Problem : Find the min sub group sum , when partitioned by size k
+* Sample : { 1,1,1,1,2,2,2,2 }
+*
+* Solution
+*
+* Sub Problem - Idea :  Prefix - take a prefix of both numbers in the Array and Number of Partitions
+*               Sol [i, j ] = Min possible sum for 0 .... i numbers using 0...j partitions
+*
+*
+* Relate    -   Idea : Sub problem expansion
+*               If Sol[ i , y ] , Be the max possible sum for the prefix ( i.e. [ :i ] ) ending at 'i' with 'y' partition size
+*               Then we can get the value of i + 1 by :
+*                      Sol[ i+1 , y ] =         For all j in [ i+1 ..... 0 ]
+*                                                   Min of {
+*                                                                Max of (
+*                                                                           Sum of [i+1 ... j ] ,
+*                                                                           if( j-1 > 0 ) then Sol[ j -1 , y-1 ] else 0
+*                                                                        )
+*                                                          }
+*
+* Topology         - Increasing in i & j
+* Base Case        - When k == 1
+* O                - Sol[k,n-1]
+* T                - KN^2
+*
+*
+* */
 
 
-//User function Template for Java
 
  class Solution{
      
      
     static Integer max = Integer.MIN_VALUE;
-    
     static long minTime(int[] arr,int n,int k){
-        
         
         
         int[][] m = new int[k+1][n];
